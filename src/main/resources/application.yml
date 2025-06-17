@@ -1,0 +1,25 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: account
+
+auth-service:
+  url: http://localhost:8089
+
+feign:
+  httpclient:
+    max-connections: 1000000
+    max-connections-per-route: 1000000
+    connection-timeout: 60000
+  client:
+    config:
+      default:
+        connectTimeout: 600000
+        readTimeout: 300000
+      feignName:
+        connectTimeout: 600000
+        readTimeout: 300000
+        loggerLevel: full
+
