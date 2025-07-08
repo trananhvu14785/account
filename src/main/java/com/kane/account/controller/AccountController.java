@@ -3,6 +3,7 @@ package com.kane.account.controller;
 import com.kane.account.infra.client.AuthClient;
 import com.kane.common.dto.request.SignInRequest;
 import com.kane.common.dto.response.SignInResponse;
+import com.kane.common.response.SuccessResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +15,12 @@ public class AccountController {
   private final AuthClient authClient;
 
   @PostMapping("/signIn")
-  public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest request) {
+  public SuccessResponse<SignInResponse> signIn(@RequestBody SignInRequest request) {
     try {
-      SignInResponse response = authClient.signIn(request);
-      return ResponseEntity.ok(response);
+      SuccessResponse<SignInResponse> response = authClient.signIn(request);
+      return response;
     } catch (Exception e) {
-      return ResponseEntity.badRequest().body(null);
+      throw new RuntimeException("Invalid username or password", e);
     }
   }
 

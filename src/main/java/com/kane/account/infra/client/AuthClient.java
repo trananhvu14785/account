@@ -3,6 +3,7 @@ package com.kane.account.infra.client;
 import com.kane.common.dto.request.SignInRequest;
 import com.kane.common.dto.request.SignUpRequest;
 import com.kane.common.dto.response.SignInResponse;
+import com.kane.common.response.SuccessResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public interface AuthClient {
   //    ResponseEntity<String> auth();
 
   @PostMapping("/auth/signIn")
-  SignInResponse signIn(SignInRequest request);
+  SuccessResponse<SignInResponse> signIn(@RequestBody SignInRequest request);
 
   @PostMapping("/login")
   ResponseEntity<SignInResponse> login(@RequestBody SignUpRequest signUpRequest);
