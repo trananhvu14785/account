@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "auth-service", url = "${auth-service.url}")
 public interface AuthClient {
 
-  //    @PostMapping("/auth")
-  //    ResponseEntity<String> auth();
-
   @PostMapping("/auth/signIn")
   SuccessResponse<SignInResponse> signIn(@RequestBody SignInRequest request);
 
